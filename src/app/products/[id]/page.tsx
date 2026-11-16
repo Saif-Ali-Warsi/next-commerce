@@ -33,7 +33,7 @@ function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   return (
     <>
       <Suspense fallback={<p>Wait...</p>}>
-        <ProductDetailPage params={params}></ProductDetailPage>
+        <ProductDetails params={params}></ProductDetails>
       </Suspense>
     </>
   );
