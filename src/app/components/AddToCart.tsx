@@ -1,15 +1,33 @@
 "use client";
+import { useContext } from "react";
 import { buttonStyles } from "../../../src/utils/buttonStyle";
+import { CartContext } from "../context/CartContext";
 
 type Props = {
   productId: number;
+  title: string;
   price: number;
 };
 
-function AddToCart({ productId, price }: Props) {
+function AddToCart({ productId, title, price }: Props) {
+  const cart = useContext(CartContext);
+
+  if (!cart) {
+    throw new Error("CartProvider is missing");
+  }
+
+  const { dispatch } = cart;
+
   const handleAddToCart = () => {
-    console.log("Product Id:", productId);
-    console.log("Price:", price);
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id: productId,
+        title,
+        price,
+        quantity: 1,
+      },
+    });
   };
 
   return (

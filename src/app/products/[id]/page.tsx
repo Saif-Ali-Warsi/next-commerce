@@ -26,7 +26,11 @@ async function ProductDetails({ params }: { params: Promise<{ id: string }> }) {
         <hr />
         <p>{product.title}</p>
         <p>{product.price}</p>
-        <AddToCart productId={product.id} price={product.price} />
+        <AddToCart
+          productId={product.id}
+          title={product.title}
+          price={product.price}
+        />
       </div>
     </>
   );
