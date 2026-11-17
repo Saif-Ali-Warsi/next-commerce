@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.product-card {
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: 1px solid aqua;
+  overflow: hidden;
+}

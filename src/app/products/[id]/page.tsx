@@ -1,3 +1,5 @@
+import AddToCart from "@/app/components/AddToCart";
+
 type Product = {
   id: number;
   title: string;
@@ -19,10 +21,13 @@ async function ProductDetails({ params }: { params: Promise<{ id: string }> }) {
 
   return (
     <>
-      <h3>Product Details</h3>
-      <hr />
-      <p>{product.title}</p>
-      <p>{product.price}</p>
+      <div className="product-card">
+        <h3>Product Details</h3>
+        <hr />
+        <p>{product.title}</p>
+        <p>{product.price}</p>
+        <AddToCart productId={product.id} price={product.price} />
+      </div>
     </>
   );
 }
