@@ -27,7 +27,17 @@ type RemoveAction = {
   payload: number;
 };
 
-type CartAction = AddAction | RemoveAction;
+type IncreaseCartQty = {
+  type: "INCREASE_QUANTITY";
+  payload: number;
+};
+
+type DecreaseCartQty = {
+  type: "DECREASE_QUANTITY";
+  payload: number;
+};
+
+type CartAction = AddAction | RemoveAction | IncreaseCartQty | DecreaseCartQty;
 
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
@@ -59,6 +69,26 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         items: state.items.filter((item) => item.id !== action.payload),
       };
 
+    case "INCREASE_QUANTITY":
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        ),
+      };
+
+    case "DECREASE_QUANTITY":
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        ),
+      };
+
     default:
       return state;
   }
@@ -71,15 +101,10 @@ type CartContextType = {
 
 export const CartContext = createContext<CartContextType | null>(null);
 
-export function CartProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const [state, dispatch] = useReducer(
-    cartReducer,
-    initialState
-  );
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  console.log("CartProvider rendered:", state);
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
@@ -87,3 +112,4 @@ export function CartProvider({
     </CartContext.Provider>
   );
 }
+
