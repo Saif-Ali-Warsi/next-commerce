@@ -10,12 +10,16 @@ function Cart() {
     throw new Error("CartProvider is missing");
   }
 
-  const { state, dispatch } = cart;
+  const { state, dispatch, isInitialized } = cart;
+
+  if (!isInitialized) {
+    return null;
+  }
 
   const totalPrice = state.items.reduce(
-  (total, item) => total + item.price * item.quantity,
-  0
-);
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
 
   return (
     <>

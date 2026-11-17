@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CartCount from "./CartCount";
 
 const Navbar = () => {
   return (
@@ -6,7 +7,7 @@ const Navbar = () => {
       <h3>NextCommerce</h3>
       <ul>
         <li>
-          <Link href="/cart">Cart</Link>
+            <CartCount />
         </li>
       </ul>
     </>
