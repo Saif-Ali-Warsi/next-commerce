@@ -12,6 +12,11 @@ function Cart() {
 
   const { state, dispatch } = cart;
 
+  const totalPrice = state.items.reduce(
+  (total, item) => total + item.price * item.quantity,
+  0
+);
+
   return (
     <>
       <h1>Shopping Cart</h1>
@@ -65,6 +70,8 @@ function Cart() {
           </div>
         ))
       )}
+
+      <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
     </>
   );
 }
