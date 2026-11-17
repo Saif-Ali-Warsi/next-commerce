@@ -1,7 +1,7 @@
 function Loading() {
   return (
     <>
-      <p>Loading..</p>
+      <p>123 Loading..</p>
     </>
   );
 }

@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 type Product = {
   id: number;
   title: string;
@@ -32,9 +30,7 @@ async function ProductDetails({ params }: { params: Promise<{ id: string }> }) {
 function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   return (
     <>
-      <Suspense fallback={<p>Wait...</p>}>
-        <ProductDetails params={params}></ProductDetails>
-      </Suspense>
+      <ProductDetails params={params}></ProductDetails>
     </>
   );
 }
