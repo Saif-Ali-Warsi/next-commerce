@@ -4,12 +4,16 @@ import CartCount from "./CartCount";
 const Navbar = () => {
   return (
     <>
-      <h3>NextCommerce</h3>
-      <ul>
-        <li>
+      <div className="flex justify-between">
+        {" "}
+        <h3>NextCommerce</h3>
+        <ul>
+          <li>
             <CartCount />
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
+      <hr />
     </>
   );
 };

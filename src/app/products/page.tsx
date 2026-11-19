@@ -1,18 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Product } from "@/app/types/product";
+
 type ProductsResponse = {
   products: Product[];
   total: number;
   skip: number;
   limit: number;
-};
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
 };
 
 const Products = async () => {
