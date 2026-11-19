@@ -1,4 +1,5 @@
 import type { Product } from "@/app/types/product";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ category: string }>;
@@ -12,10 +13,15 @@ const CategoryPage = async ({ params }: Props) => {
   const response = await fetch(`${api_url}/products/category/${category}`);
 
   if (!response.ok) {
-    throw new Error("Failed to fetch");
+    notFound();
   }
 
   const data = await response.json();
+
+  
+  if (data.products.length === 0) {
+  notFound();
+}
 
   return (
     <div>
