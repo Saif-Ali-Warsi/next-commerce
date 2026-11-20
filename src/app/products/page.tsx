@@ -23,7 +23,6 @@ const Products = async () => {
 
   return (
     <>
-      <h3>Products!</h3>
       <div className="flex flex-wrap gap-2">
         {data.products.map((product) => (
           <Link href={`/products/${product.id}`}>
@@ -31,6 +30,7 @@ const Products = async () => {
               <Image
                 src={product.thumbnail}
                 alt={product.title}
+                loading="eager"
                 width={200}
                 height={200}
               />

@@ -1,9 +1,22 @@
 import type { Product } from "@/app/types/product";
 import { notFound } from "next/navigation";
 
+import type { Metadata } from "next";
+
 type Props = {
   params: Promise<{ category: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: Props): Promise<Metadata> {
+  const { category } = await params;
+
+  return {
+    title: `${category} | NextCommerce`,
+    description: `Explore our ${category} collection.`,
+  };
+}
 
 const CategoryPage = async ({ params }: Props) => {
   const { category } = await params;
@@ -18,10 +31,9 @@ const CategoryPage = async ({ params }: Props) => {
 
   const data = await response.json();
 
-  
   if (data.products.length === 0) {
-  notFound();
-}
+    notFound();
+  }
 
   return (
     <div>
